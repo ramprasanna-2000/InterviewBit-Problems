@@ -11,26 +11,23 @@
  */
 class Solution {
 public:
-    bool isSym(TreeNode* node1,TreeNode* node2)
+    
+    bool isSym(TreeNode* leftSide,TreeNode* rightSide)
     {
-        if(node1 == NULL || node2 == NULL)
+        if(leftSide == NULL || rightSide == NULL)
         {
-            return node1 == node2;
+            return leftSide == rightSide;
         }
         
-        if(node1->val != node2->val)
+        if(leftSide->val != rightSide->val)
         {
             return false;
         }
         
-        return isSym(node1->left,node2->right) && isSym(node1->right,node2->left);
+        return isSym(leftSide->left,rightSide->right) && isSym(leftSide->right,rightSide->left);
     }
     
     bool isSymmetric(TreeNode* root) {
-        if(root == NULL)
-        {
-            return true;
-        }
-        return isSym(root->left,root->right);
+        return root==NULL || isSym(root->left,root->right);
     }
 };
